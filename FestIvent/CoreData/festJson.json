@@ -1,0 +1,47 @@
+[
+    {
+        "festDate": "20-08-2022",
+        "festTitle": "Viva Braslav",
+        "festPlace": "Lake",
+        "festDescr": "Фестиваль на озере",
+        "festTicketPrice": 50,
+        "festAvailableTickets": 1000,
+        "festIMGTag": "vivabraslav"
+    },
+    {
+        "festDate": "17-06-2022",
+        "festTitle": "Lidbeer",
+        "festPlace": "Lida",
+        "festDescr": "Фестиваль в Лиде",
+        "festTicketPrice": 40,
+        "festAvailableTickets": 1500,
+        "festIMGTag": "vivabraslav"
+    },
+    {
+        "festDate": "25-07-2022",
+        "festTitle": "Global Gathering",
+        "festPlace": "Pole",
+        "festDescr": "Фестиваль в поле",
+        "festTicketPrice": 70,
+        "festAvailableTickets": 2500,
+        "festIMGTag": "vivabraslav"
+    },
+    {
+        "festDate": "18-06-2022",
+        "festTitle": "A-Fest",
+        "festPlace": "Minsk",
+        "festDescr": "Фестиваль в парке",
+        "festTicketPrice": 20,
+        "festAvailableTickets": 500,
+        "festIMGTag": "vivabraslav"
+    },
+    {
+        "festDate": "01-09-2022",
+        "festTitle": "Rock za Bobrov",
+        "festPlace": "Borovaya",
+        "festDescr": "Фестиваль на аэродроме",
+        "festTicketPrice": 45,
+        "festAvailableTickets": 2000,
+        "festIMGTag": "vivabraslav"
+    }
+]

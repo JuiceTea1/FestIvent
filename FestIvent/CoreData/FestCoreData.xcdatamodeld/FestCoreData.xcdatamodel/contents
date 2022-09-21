@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CheckData" representedClassName="CheckData" syncable="YES">
+        <attribute name="dataCounter" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="FestData" representedClassName="FestData" syncable="YES">
+        <attribute name="festAvailableTickets" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="festDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="festDescr" optional="YES" attributeType="String"/>
+        <attribute name="festIMGTag" optional="YES" attributeType="String"/>
+        <attribute name="festPlace" optional="YES" attributeType="String"/>
+        <attribute name="festTicketPrice" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="festTitle" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ParticipantData" representedClassName="ParticipantData" syncable="YES" codeGenerationType="class"/>
+</model>
