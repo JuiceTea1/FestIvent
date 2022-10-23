@@ -9,22 +9,12 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    /*
-    func firstAdd() {
-        guard UserDefaults.standard.bool(forKey: "Not a first launch") == false else {
-            return
-        }
-        UserDefaults.standard.set(true, forKey: "Not a first launch")
-
-        self.coreDataManager.saveContext { error in
-            guard error == nil else {
-                return
-            }
-        }
-    }
-*/
+    
+    let networkManager = NetworkManager()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        networkManager.addData()
+//        networkManager.chooseDate(date: Date.now)
         return true
     }
 

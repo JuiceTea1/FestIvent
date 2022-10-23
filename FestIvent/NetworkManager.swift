@@ -15,6 +15,7 @@ class NetworkManager {
 
     lazy var fetchedCheckData: [CheckData] = []
     lazy var fetchedFestData: [FestData] = []
+    lazy var fetchedChoosedDate: [ChoosedDate] = []
     
     func addData() {
         let url = Bundle.main.url(forResource: "festJson", withExtension: "json")
@@ -27,17 +28,16 @@ class NetworkManager {
             } catch {
                 print(error)
             }
-            print("объем объекта: \(fetchedCheckData.first?.dataCounter ?? 0)")
-            print("объем json: \(dataJSON.count)")
-            print("колво объектов в БД: \(fetchedCheckData.count)")
             guard fetchedCheckData.first?.dataCounter != Int16(dataJSON.count) else {
                 return
             }
+            
 //            MARK: Создание Entity для первого заполения БД
             if fetchedCheckData.first?.dataCounter == nil {
                 let savedHash = CheckData(context: self.coreDataManager.context)
                 savedHash.dataCounter = Int16(dataJSON.count)
             }
+            
 //            MARK: обновление БД в случае изменения JSON
             if fetchedCheckData.first?.dataCounter != nil {
                 let objectUpdate = fetchedCheckData[0] as NSManagedObject
@@ -61,7 +61,7 @@ class NetworkManager {
                 result.forEach { festJSON in
                     let fest = FestData(context: self.coreDataManager.context)
                     fest.festIMGTag = festJSON.festIMGTag
-                    fest.festDate = getDate(from: festJSON.festDate!)
+                    fest.festDate = festJSON.festDate
                     fest.festTitle = festJSON.festTitle
                     fest.festTicketPrice = festJSON.festTicketPrice
                     fest.festAvailableTickets = festJSON.festAvailableTickets
@@ -77,12 +77,27 @@ class NetworkManager {
             print(error)
         }
     }
-//    MARK: Date Formatter
-    private func getDate(from string: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = .current
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "MM-dd-yyyy", options: 0, locale: Locale(identifier: "ru-RU"))
-        return dateFormatter.date(from: string)!
+    func chooseDate(date: Date) {
+        do {
+            fetchedChoosedDate = try self.coreDataManager.context.fetch(ChoosedDate.fetchRequest())
+        } catch {
+            print(error)
+        }
+//            MARK: Первоe заполение даты в БД
+        if fetchedChoosedDate.first?.date == nil {
+            let savedValue = ChoosedDate(context: self.coreDataManager.context)
+            savedValue.date = date
+        }
+//            MARK: обновление даты в БД
+        if fetchedChoosedDate.first?.date != nil {
+            let objectUpdate = fetchedChoosedDate[0] as NSManagedObject
+            objectUpdate.setValue(date, forKey: "date")
+        }
+        self.coreDataManager.saveContext { error in
+            guard error == nil else {
+                return
+            }
+        }
     }
 }
 
