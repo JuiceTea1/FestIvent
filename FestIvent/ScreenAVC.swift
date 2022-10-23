@@ -20,10 +20,13 @@ class ScreenAVC: UIViewController {
     
     lazy var coreDataManager = CoreDataManager(modelName: "FestCoreData")
     
-//    lazy var dateNowString = MyDateFormatter.getDateString(from: Date.now)
-    lazy var datePredicate = MyDateFormatter.getDateString(from: Date.now)
+    lazy var fetchedFestData: [FestData] = []
     
-//    MARK: Fetched result controller for FestData
+    lazy var fetchedChoosedDate: [ChoosedDate] = []
+    
+    lazy var datePredicate = MyDateFormatter.getDateString(from: fetchedChoosedDate[0].date ?? Date.now)
+    
+    /*
     lazy var fetchedRC: NSFetchedResultsController<FestData> = {
         lazy var predicate = NSPredicate(format: "festDate = %@", "\(self.datePredicate)")
         print(predicate)
@@ -35,30 +38,17 @@ class ScreenAVC: UIViewController {
         fetchedResultController.delegate = self
         return fetchedResultController
     }()
-    
-//    lazy var fetchedChoosedDate: [ChoosedDate] = []
-    lazy var fetchedRCDate: NSFetchedResultsController<ChoosedDate> = {
-        let fetchedRequest = ChoosedDate.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        fetchedRequest.sortDescriptors = [sortDescriptor]
-        let fetchedResultController = NSFetchedResultsController(fetchRequest: fetchedRequest, managedObjectContext: coreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultController.delegate = self
-        return fetchedResultController
-    }()
+    */
+        
     
 //    MARK: wiewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchChoosedDate()
         tuneUI()
-        performFetchedRC()
+        fetchDataFest()
         NotificationCenter.default.addObserver(self, selector: #selector(updateTitle(for:)), name: NSNotification.Name("CalendarView"), object: nil)
-//        fetchChoosedDate()
 
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        performFetchedRC()
-        tableViewA.reloadData()
     }
 
     @IBAction func showCalendar(_ sender: UIBarButtonItem) {
@@ -74,7 +64,7 @@ class ScreenAVC: UIViewController {
         tableViewA.rowHeight = 150
         listTabBar.image = UIImage(systemName: "list.dash")
         calendarBarButton.image = UIImage(systemName: "calendar")
-       
+        self.navigationBar.topItem?.title = MyDateFormatter.getDateString(from: fetchedChoosedDate[0].date ?? Date.now)
 //        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -82,37 +72,44 @@ class ScreenAVC: UIViewController {
         if let text = notify.object as? String {
             self.navigationBar.topItem?.title = text
             self.datePredicate = text
-            performFetchedRC()
-            tableViewA.reloadData()
+            fetchDataFest()
         }
     }
-    
-    func performFetchedRC() {
+    //    MARK: Fetch request for FestData
+    func fetchDataFest() {
+        let fetchRequest = FestData.fetchRequest()
+        lazy var predicate = NSPredicate(format: "festDate = %@", "\(self.datePredicate)")
+        fetchRequest.predicate = predicate
+        let sortDescriptor = NSSortDescriptor(key: "festDate", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         do {
-            try fetchedRC.performFetch()
-            try fetchedRCDate.performFetch()
-        } catch {
+            fetchedFestData = try coreDataManager.context.fetch(fetchRequest)
+            tableViewA.reloadData()
+        }
+        catch {
             print(error)
         }
     }
-//    func fetchChoosedDate() {
-//        do {
-//            fetchedChoosedDate = try self.coreDataManager.context.fetch(ChoosedDate.fetchRequest())
-//        } catch {
-//            print(error)
-//        }
-//    }
+    
+    func fetchChoosedDate() {
+        let fetchRequest = ChoosedDate.fetchRequest()
+        do {
+            fetchedChoosedDate = try coreDataManager.context.fetch(fetchRequest)
+        }
+        catch {
+            print(error)
+        }
+    }
 }
 
 extension ScreenAVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        fetchedRC.fetchedObjects?.count ?? 0
+        fetchedFestData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
-        let fest = fetchedRC.object(at: indexPath)
-        print(fest.festDate)
+        let fest = fetchedFestData[indexPath.row]
         cell.capitalImageView.image = UIImage(named: fest.festIMGTag!)
         cell.titleLabel.text = fest.festTitle
         cell.dateLabel.text = fest.festDate
@@ -120,14 +117,5 @@ extension ScreenAVC: UITableViewDataSource, UITableViewDelegate {
         cell.priceLabel.text = String(fest.festTicketPrice) + "р"
         return cell
     }
-    
-    
 }
-extension ScreenAVC: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        print("work")
-        tableViewA.reloadData()
-        }
-        
 
-}

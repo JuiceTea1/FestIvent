@@ -83,6 +83,7 @@ class NetworkManager {
         } catch {
             print(error)
         }
+
 //            MARK: Первоe заполение даты в БД
         if fetchedChoosedDate.first?.date == nil {
             let savedValue = ChoosedDate(context: self.coreDataManager.context)

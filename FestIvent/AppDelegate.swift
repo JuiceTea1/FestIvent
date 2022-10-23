@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         networkManager.addData()
-//        networkManager.chooseDate(date: Date.now)
+        networkManager.chooseDate(date: Date.now)
         return true
     }
 

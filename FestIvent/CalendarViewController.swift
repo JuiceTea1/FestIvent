@@ -36,9 +36,11 @@ class CalendarViewController: UIViewController {
         view.addSubview(backgroundView)
         view.addSubview(customView)
         tuneUI()
-        
     }
-
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.dismiss(animated: true)
+    }
+    
     func tuneUI() {
         
         var constants = [
