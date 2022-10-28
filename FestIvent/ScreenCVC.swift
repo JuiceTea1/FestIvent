@@ -22,7 +22,7 @@ class ScreenCVC: UIViewController {
     lazy var festData = FestData()
     
     lazy var textForCountdown: String = ""
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tuneUI()
@@ -52,6 +52,7 @@ class ScreenCVC: UIViewController {
             self.requestLocalNotification(festData.festTitle!)
         }
     }
+
 //    MARK: кнопка "Поделиться"
     @IBAction func share(_ sender: UIBarButtonItem) {
         let text = "Приглашаю тебя посетить \(festData.festTitle ?? "")"
@@ -59,6 +60,7 @@ class ScreenCVC: UIViewController {
         present(share, animated: true)
     }
 }
+
 // MARK: tableView
 extension ScreenCVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

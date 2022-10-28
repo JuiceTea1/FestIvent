@@ -16,7 +16,6 @@ class NetworkManager {
     lazy var fetchedCheckData: [CheckData] = []
     lazy var fetchedFestData: [FestData] = []
     lazy var fetchedChoosedDate: [ChoosedDate] = []
-    lazy var fetchedPreviousData: [PreviousFestData] = []
     
 //    MARK: Получение данных из JSON и загрузка их в БД
     func addData() {
