@@ -7,13 +7,22 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="FestData" representedClassName="FestData" syncable="YES">
+        <attribute name="festArtists" optional="YES" attributeType="String"/>
         <attribute name="festAvailableTickets" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="festDate" optional="YES" attributeType="String"/>
+        <attribute name="festDateSort" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="festDescr" optional="YES" attributeType="String"/>
         <attribute name="festIMGTag" optional="YES" attributeType="String"/>
         <attribute name="festPlace" optional="YES" attributeType="String"/>
         <attribute name="festTicketPrice" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="festTitle" optional="YES" attributeType="String"/>
+        <attribute name="isInFavourites" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
-    <entity name="ParticipantData" representedClassName="ParticipantData" syncable="YES" codeGenerationType="class"/>
+    <entity name="PreviousFestData" representedClassName="PreviousFestData" syncable="YES">
+        <attribute name="festDate" optional="YES" attributeType="String"/>
+        <attribute name="festDescr" optional="YES" attributeType="String"/>
+        <attribute name="festIMGTag" optional="YES" attributeType="String"/>
+        <attribute name="festPlace" optional="YES" attributeType="String"/>
+        <attribute name="festTitle" optional="YES" attributeType="String"/>
+    </entity>
 </model>

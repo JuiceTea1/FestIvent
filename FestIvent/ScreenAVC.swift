@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 class ScreenAVC: UIViewController {
     
@@ -15,32 +14,20 @@ class ScreenAVC: UIViewController {
     @IBOutlet weak var listTabBar: UITabBarItem!
     
     @IBOutlet weak var calendarBarButton: UIBarButtonItem!
-
+    
+    @IBOutlet weak var leftBarButton: UIBarButtonItem!
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
     
-    lazy var coreDataManager = CoreDataManager(modelName: "FestCoreData")
+    lazy var coreDataManager = CoreDataManager.shared
     
     lazy var fetchedFestData: [FestData] = []
     
     lazy var fetchedChoosedDate: [ChoosedDate] = []
     
     lazy var datePredicate = MyDateFormatter.getDateString(from: fetchedChoosedDate[0].date ?? Date.now)
-    
-    /*
-    lazy var fetchedRC: NSFetchedResultsController<FestData> = {
-        lazy var predicate = NSPredicate(format: "festDate = %@", "\(self.datePredicate)")
-        print(predicate)
-        let fetchedRequest = FestData.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "festDate", ascending: true)
-        fetchedRequest.sortDescriptors = [sortDescriptor]
-        fetchedRequest.predicate = predicate
-        let fetchedResultController = NSFetchedResultsController(fetchRequest: fetchedRequest, managedObjectContext: coreDataManager.context, sectionNameKeyPath: nil, cacheName: nil)
-        fetchedResultController.delegate = self
-        return fetchedResultController
-    }()
-    */
-        
-    
+    lazy var nilPredicate: String = ""
+
 //    MARK: wiewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,14 +49,13 @@ class ScreenAVC: UIViewController {
         tableViewA.dataSource = self
         tableViewA.delegate = self
         tableViewA.rowHeight = 150
-        listTabBar.image = UIImage(systemName: "list.dash")
         calendarBarButton.image = UIImage(systemName: "calendar")
-        self.navigationBar.topItem?.title = MyDateFormatter.getDateString(from: fetchedChoosedDate[0].date ?? Date.now)
-//        navigationController?.navigationBar.prefersLargeTitles = true
+        leftBarButton.image = UIImage(systemName: "line.3.horizontal")
     }
     
     @objc private func updateTitle(for notify: NSNotification) {
         if let text = notify.object as? String {
+            self.nilPredicate = "not nil"
             self.navigationBar.topItem?.title = text
             self.datePredicate = text
             fetchDataFest()
@@ -78,9 +64,11 @@ class ScreenAVC: UIViewController {
     //    MARK: Fetch request for FestData
     func fetchDataFest() {
         let fetchRequest = FestData.fetchRequest()
-        lazy var predicate = NSPredicate(format: "festDate = %@", "\(self.datePredicate)")
-        fetchRequest.predicate = predicate
-        let sortDescriptor = NSSortDescriptor(key: "festDate", ascending: true)
+        if nilPredicate != "" {
+            lazy var predicate = NSPredicate(format: "festDate = %@", "\(self.datePredicate)")
+            fetchRequest.predicate = predicate
+        }
+        let sortDescriptor = NSSortDescriptor(key: "festDateSort", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         do {
             fetchedFestData = try coreDataManager.context.fetch(fetchRequest)
@@ -106,7 +94,7 @@ extension ScreenAVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         fetchedFestData.count
     }
-    
+//    MARK: Заполнение таблицы даными из CoreData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
         let fest = fetchedFestData[indexPath.row]
@@ -116,6 +104,16 @@ extension ScreenAVC: UITableViewDataSource, UITableViewDelegate {
         cell.placeLabel.text = fest.festPlace
         cell.priceLabel.text = String(fest.festTicketPrice) + "р"
         return cell
+    }
+//    MARK: Переход на страницу концерта
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        guard let vc = storyboard?.instantiateViewController(identifier: "descr") as? ScreenCVC else {
+            return nil
+        }
+        vc.festData = fetchedFestData[indexPath.row]
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+        return indexPath
     }
 }
 

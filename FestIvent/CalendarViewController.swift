@@ -12,15 +12,14 @@ class CalendarViewController: UIViewController {
     lazy var backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         return view
     }()
     lazy var customView = CalendarView { [weak self] in
         guard let self = self else {
             return
         }
-        self.dismiss(animated: true) {
-        }
+        self.dismiss(animated: true)
     }
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -52,8 +51,8 @@ class CalendarViewController: UIViewController {
         constants.append(contentsOf: [
             customView.leadingAnchor.constraint(equalTo: view.readableContentGuide.leadingAnchor),
             customView.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor),
-            customView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100),
-            customView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.51)
+            customView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -70),
+            customView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
         ])
         NSLayoutConstraint.activate(constants)
     }

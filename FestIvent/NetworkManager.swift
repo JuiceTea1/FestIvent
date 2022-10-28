@@ -8,18 +8,19 @@
 import Foundation
 import CoreData
 
-//    MARK: Получение данных из JSON и загрузка их в БД
+
 class NetworkManager {
     
-    lazy var coreDataManager = CoreDataManager(modelName: "FestCoreData")
+    lazy var coreDataManager = CoreDataManager.shared
 
     lazy var fetchedCheckData: [CheckData] = []
     lazy var fetchedFestData: [FestData] = []
     lazy var fetchedChoosedDate: [ChoosedDate] = []
+    lazy var fetchedPreviousData: [PreviousFestData] = []
     
+//    MARK: Получение данных из JSON и загрузка их в БД
     func addData() {
         let url = Bundle.main.url(forResource: "festJson", withExtension: "json")
-        
         do {
             let dataJSON = try Data(contentsOf: url!)
             
@@ -56,6 +57,7 @@ class NetworkManager {
                     return
                 }
             }
+            
 //            MARK: Заполнение БД из JSONa
                 let result = try JSONDecoder().decode([FestDataForJSON].self, from: dataJSON)
                 result.forEach { festJSON in
@@ -67,6 +69,16 @@ class NetworkManager {
                     fest.festAvailableTickets = festJSON.festAvailableTickets
                     fest.festPlace = festJSON.festPlace
                     fest.festDescr = festJSON.festDescr
+                    fest.festDateSort = MyDateFormatter.getDate(from: festJSON.festDate ?? "")
+                    fest.festArtists = festJSON.festArtists
+//                    MARK: Костыль загрузки данных для предыдущего фестиваля
+                    let prevFest = PreviousFestData(context: self.coreDataManager.context)
+                    let dateMinusYear = Date(timeInterval: -60*60*24*365, since: MyDateFormatter.getDate(from: festJSON.festDate!))
+                    prevFest.festDate = MyDateFormatter.getDateString(from: dateMinusYear)
+                    prevFest.festTitle = festJSON.festTitle
+                    prevFest.festDescr = festJSON.festDescr
+                    prevFest.festIMGTag = festJSON.festIMGTag
+                    prevFest.festPlace = festJSON.festPlace
                     self.coreDataManager.saveContext { error in
                         guard error == nil else {
                             return
@@ -77,18 +89,21 @@ class NetworkManager {
             print(error)
         }
     }
+    
+//    MARK: загрузка выбранной даты в БД
     func chooseDate(date: Date) {
         do {
             fetchedChoosedDate = try self.coreDataManager.context.fetch(ChoosedDate.fetchRequest())
         } catch {
             print(error)
         }
-
+        
 //            MARK: Первоe заполение даты в БД
         if fetchedChoosedDate.first?.date == nil {
             let savedValue = ChoosedDate(context: self.coreDataManager.context)
             savedValue.date = date
         }
+        
 //            MARK: обновление даты в БД
         if fetchedChoosedDate.first?.date != nil {
             let objectUpdate = fetchedChoosedDate[0] as NSManagedObject
@@ -100,5 +115,57 @@ class NetworkManager {
             }
         }
     }
+    
+//    MARK: добавление фестиваля в избранное
+    func addToFavourites(_ festName: String) {
+        do {
+            fetchedFestData = try self.coreDataManager.context.fetch(FestData.fetchRequest())
+        } catch {
+            print(error)
+        }
+        fetchedFestData.forEach { entity in
+            if entity.festTitle == festName {
+                let entity = entity as NSManagedObject
+                entity.setValue(true, forKey: "isInFavourites")
+                self.coreDataManager.saveContext { error in
+                    guard error == nil else {
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+//    MARK: удаление фестиваля из избранного
+    func deleteFromFavourites(_ festName: String) {
+        do {
+            fetchedFestData = try self.coreDataManager.context.fetch(FestData.fetchRequest())
+        } catch {
+            print(error)
+        }
+        fetchedFestData.forEach { entity in
+            if entity.festTitle == festName {
+                let entity = entity as NSManagedObject
+                entity.setValue(false, forKey: "isInFavourites")
+                self.coreDataManager.saveContext { error in
+                    guard error == nil else {
+                        return
+                    }
+                }
+            }
+        }
+    }
 }
 
+// MARK: codable для парсинга JSON
+struct FestDataForJSON: Codable {
+    var festAvailableTickets: Int16
+    var festDate: String?
+    var festDescr: String?
+    var festPlace: String?
+    var festTicketPrice: Int16
+    var festTitle: String?
+    var festIMGTag: String?
+    var festDateSort: Date?
+    var festArtists: String?
+}

@@ -6,18 +6,21 @@
 //
 
 import UIKit
-import CoreData
 
 class CalendarView: UIView {
     
     lazy var fetchedChoosedDate: [ChoosedDate] = []
     
-    lazy var coreDataManager = CoreDataManager(modelName: "FestCoreData")
+    lazy var coreDataManager = CoreDataManager.shared
     
     lazy var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
-            picker.preferredDatePickerStyle = .inline
-            picker.datePickerMode = .date
+        picker.preferredDatePickerStyle = .inline
+        picker.datePickerMode = .date
+        picker.minimumDate = Date().addingTimeInterval(-365*24*60*60)
+        picker.maximumDate = Date().addingTimeInterval(2*365*24*60*60)
+        picker.countDownDuration = 2*60
+        picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
     
@@ -65,14 +68,14 @@ class CalendarView: UIView {
     }
 
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        let constants = [
-//        datePicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-//        datePicker.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-//        datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0)
-//        ]
-//        NSLayoutConstraint.activate(constants)
-//    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let constants = [
+        datePicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+        datePicker.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+        datePicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0)
+        ]
+        NSLayoutConstraint.activate(constants)
+    }
     
 }

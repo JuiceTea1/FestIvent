@@ -2,7 +2,7 @@
 //  FestData+CoreDataClass.swift
 //  FestIvent
 //
-//  Created by mac on 23.10.22.
+//  Created by mac on 28.10.22.
 //
 //
 

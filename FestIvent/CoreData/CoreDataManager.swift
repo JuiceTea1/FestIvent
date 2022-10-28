@@ -9,7 +9,8 @@ import Foundation
 import CoreData
 
 class CoreDataManager {
-    var modelName = ""
+    static let shared = CoreDataManager()
+    var modelName = "FestCoreData"
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: modelName)
         container.loadPersistentStores { storeDescription, error in }
@@ -18,9 +19,7 @@ class CoreDataManager {
     lazy var context: NSManagedObjectContext = {
         persistentContainer.viewContext
     }()
-    init(modelName: String = "") {
-        self.modelName = modelName
-    }
+    
     func saveContext(completion: (Error?)->()) {
         guard context.hasChanges else {
             completion(CoreDataManagerError.noData)
@@ -39,12 +38,3 @@ enum CoreDataManagerError: Error {
     case noData
 }
 
-struct FestDataForJSON: Codable {
-    var festAvailableTickets: Int16
-    var festDate: String?
-    var festDescr: String?
-    var festPlace: String?
-    var festTicketPrice: Int16
-    var festTitle: String?
-    var festIMGTag: String?
-}

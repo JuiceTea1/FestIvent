@@ -20,16 +20,20 @@
 		041FC45728DB4BE900180744 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041FC45528DB4BE900180744 /* Main.storyboard */; };
 		041FC45928DB4BEC00180744 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041FC45828DB4BEC00180744 /* Assets.xcassets */; };
 		041FC45C28DB4BEC00180744 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041FC45A28DB4BEC00180744 /* LaunchScreen.storyboard */; };
+		0423EAE42906B8320071F148 /* FestCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0423EAE22906B8320071F148 /* FestCoreData.xcdatamodeld */; };
 		04484AD62903042B0042765C /* ChoosedDate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04484AD42903042B0042765C /* ChoosedDate+CoreDataClass.swift */; };
 		04484AD72903042B0042765C /* ChoosedDate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04484AD52903042B0042765C /* ChoosedDate+CoreDataProperties.swift */; };
-		047064DF2905435500F10989 /* FestData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047064DD2905435500F10989 /* FestData+CoreDataClass.swift */; };
-		047064E02905435500F10989 /* FestData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047064DE2905435500F10989 /* FestData+CoreDataProperties.swift */; };
 		0470C12328EF00F100343A10 /* ScreenBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0470C12228EF00F100343A10 /* ScreenBVC.swift */; };
 		0470C12528EF010400343A10 /* ScreenCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0470C12428EF010400343A10 /* ScreenCVC.swift */; };
 		0470C12728EF011D00343A10 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0470C12628EF011D00343A10 /* SearchVC.swift */; };
-		047E694D28FC962E0044A815 /* FestCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 047E694B28FC962E0044A815 /* FestCoreData.xcdatamodeld */; };
+		04743DA32905878D000FAFB5 /* CustommCellC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04743DA12905878D000FAFB5 /* CustommCellC.swift */; };
+		04743DA42905878D000FAFB5 /* CustommCellC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04743DA22905878D000FAFB5 /* CustommCellC.xib */; };
 		047E695928FC9BC90044A815 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047E695828FC9BC90044A815 /* NetworkManager.swift */; };
 		048B07022902DDE90037D656 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048B07012902DDE90037D656 /* DateFormatter.swift */; };
+		048C22AD290B2B2C007EB3E8 /* FestData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C22AB290B2B2C007EB3E8 /* FestData+CoreDataClass.swift */; };
+		048C22AE290B2B2C007EB3E8 /* FestData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C22AC290B2B2C007EB3E8 /* FestData+CoreDataProperties.swift */; };
+		048C22B1290BF11D007EB3E8 /* PreviousFestData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C22AF290BF11D007EB3E8 /* PreviousFestData+CoreDataClass.swift */; };
+		048C22B2290BF11D007EB3E8 /* PreviousFestData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C22B0290BF11D007EB3E8 /* PreviousFestData+CoreDataProperties.swift */; };
 		04ABC4B928F5B3C8007841C2 /* festJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 04ABC4B828F5B3C8007841C2 /* festJson.json */; };
 /* End PBXBuildFile section */
 
@@ -49,16 +53,20 @@
 		041FC45828DB4BEC00180744 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041FC45B28DB4BEC00180744 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041FC45D28DB4BEC00180744 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0423EAE32906B8320071F148 /* FestCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FestCoreData.xcdatamodel; sourceTree = "<group>"; };
 		04484AD42903042B0042765C /* ChoosedDate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChoosedDate+CoreDataClass.swift"; sourceTree = "<group>"; };
 		04484AD52903042B0042765C /* ChoosedDate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChoosedDate+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		047064DD2905435500F10989 /* FestData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FestData+CoreDataClass.swift"; sourceTree = "<group>"; };
-		047064DE2905435500F10989 /* FestData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FestData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0470C12228EF00F100343A10 /* ScreenBVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenBVC.swift; sourceTree = "<group>"; };
 		0470C12428EF010400343A10 /* ScreenCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCVC.swift; sourceTree = "<group>"; };
 		0470C12628EF011D00343A10 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
-		047E694C28FC962E0044A815 /* FestCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FestCoreData.xcdatamodel; sourceTree = "<group>"; };
+		04743DA12905878D000FAFB5 /* CustommCellC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustommCellC.swift; sourceTree = "<group>"; };
+		04743DA22905878D000FAFB5 /* CustommCellC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustommCellC.xib; sourceTree = "<group>"; };
 		047E695828FC9BC90044A815 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		048B07012902DDE90037D656 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		048C22AB290B2B2C007EB3E8 /* FestData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FestData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		048C22AC290B2B2C007EB3E8 /* FestData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FestData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		048C22AF290BF11D007EB3E8 /* PreviousFestData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviousFestData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		048C22B0290BF11D007EB3E8 /* PreviousFestData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviousFestData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		04ABC4B828F5B3C8007841C2 /* festJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = festJson.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +86,8 @@
 			children = (
 				04177AC328F016330085BBB3 /* CustomCell.swift */,
 				04177AC428F016330085BBB3 /* CustomCell.xib */,
+				04743DA12905878D000FAFB5 /* CustommCellC.swift */,
+				04743DA22905878D000FAFB5 /* CustommCellC.xib */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -90,9 +100,11 @@
 				04484AD52903042B0042765C /* ChoosedDate+CoreDataProperties.swift */,
 				041230D728FDD3F400737B7E /* CheckData+CoreDataClass.swift */,
 				041230D828FDD3F400737B7E /* CheckData+CoreDataProperties.swift */,
-				047064DD2905435500F10989 /* FestData+CoreDataClass.swift */,
-				047064DE2905435500F10989 /* FestData+CoreDataProperties.swift */,
-				047E694B28FC962E0044A815 /* FestCoreData.xcdatamodeld */,
+				048C22AF290BF11D007EB3E8 /* PreviousFestData+CoreDataClass.swift */,
+				048C22B0290BF11D007EB3E8 /* PreviousFestData+CoreDataProperties.swift */,
+				048C22AB290B2B2C007EB3E8 /* FestData+CoreDataClass.swift */,
+				048C22AC290B2B2C007EB3E8 /* FestData+CoreDataProperties.swift */,
+				0423EAE22906B8320071F148 /* FestCoreData.xcdatamodeld */,
 				04ABC4B828F5B3C8007841C2 /* festJson.json */,
 			);
 			path = CoreData;
@@ -197,6 +209,7 @@
 			files = (
 				041FC45C28DB4BEC00180744 /* LaunchScreen.storyboard in Resources */,
 				041FC45928DB4BEC00180744 /* Assets.xcassets in Resources */,
+				04743DA42905878D000FAFB5 /* CustommCellC.xib in Resources */,
 				04ABC4B928F5B3C8007841C2 /* festJson.json in Resources */,
 				04177AC628F016330085BBB3 /* CustomCell.xib in Resources */,
 				041FC45728DB4BE900180744 /* Main.storyboard in Resources */,
@@ -211,24 +224,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				040C6EF52901ACA80029EDEE /* CalendarViewController.swift in Sources */,
+				048C22AE290B2B2C007EB3E8 /* FestData+CoreDataProperties.swift in Sources */,
+				048C22AD290B2B2C007EB3E8 /* FestData+CoreDataClass.swift in Sources */,
 				047E695928FC9BC90044A815 /* NetworkManager.swift in Sources */,
+				0423EAE42906B8320071F148 /* FestCoreData.xcdatamodeld in Sources */,
 				040C6EF72901AFE50029EDEE /* CalendarView.swift in Sources */,
 				041FC45028DB4BE900180744 /* AppDelegate.swift in Sources */,
 				04177AC528F016330085BBB3 /* CustomCell.swift in Sources */,
 				041230D928FDD3F400737B7E /* CheckData+CoreDataClass.swift in Sources */,
 				041230DA28FDD3F400737B7E /* CheckData+CoreDataProperties.swift in Sources */,
+				048C22B2290BF11D007EB3E8 /* PreviousFestData+CoreDataProperties.swift in Sources */,
 				04484AD62903042B0042765C /* ChoosedDate+CoreDataClass.swift in Sources */,
 				04484AD72903042B0042765C /* ChoosedDate+CoreDataProperties.swift in Sources */,
+				048C22B1290BF11D007EB3E8 /* PreviousFestData+CoreDataClass.swift in Sources */,
 				048B07022902DDE90037D656 /* DateFormatter.swift in Sources */,
 				0470C12728EF011D00343A10 /* SearchVC.swift in Sources */,
-				047E694D28FC962E0044A815 /* FestCoreData.xcdatamodeld in Sources */,
+				04743DA32905878D000FAFB5 /* CustommCellC.swift in Sources */,
 				04177AC228EF03A00085BBB3 /* ScreenAVC.swift in Sources */,
 				041FC45228DB4BE900180744 /* SceneDelegate.swift in Sources */,
 				0470C12528EF010400343A10 /* ScreenCVC.swift in Sources */,
 				0470C12328EF00F100343A10 /* ScreenBVC.swift in Sources */,
-				047064E02905435500F10989 /* FestData+CoreDataProperties.swift in Sources */,
 				04177ACA28F410310085BBB3 /* CoreDataManager.swift in Sources */,
-				047064DF2905435500F10989 /* FestData+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,12 +470,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		047E694B28FC962E0044A815 /* FestCoreData.xcdatamodeld */ = {
+		0423EAE22906B8320071F148 /* FestCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				047E694C28FC962E0044A815 /* FestCoreData.xcdatamodel */,
+				0423EAE32906B8320071F148 /* FestCoreData.xcdatamodel */,
 			);
-			currentVersion = 047E694C28FC962E0044A815 /* FestCoreData.xcdatamodel */;
+			currentVersion = 0423EAE32906B8320071F148 /* FestCoreData.xcdatamodel */;
 			path = FestCoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
